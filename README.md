@@ -44,4 +44,4 @@ Where does a retail business lose its profit? An analysis of 9,977 order lines u
 - `superstore_clean.csv` – cleaned data
 - `superstore_queries.sql` – SQL queries
 - `dax_measures.txt` – Power BI measures
-- `dashboard.pbix` / `dashboard.png` – Power BI file and screenshot
+- `superstore_dashboard.pbix` / `dashboard.png` – Power BI file and screenshot
