@@ -1,0 +1,47 @@
+POWER BI SETUP  (table name after import: superstore_clean)
+=========================================================
+
+1) Home > Get data > Text/CSV > superstore_clean.csv > Load.
+   Check Postal Code is Text (not Number) so leading zeros are kept.
+
+2) New measures (Modeling > New measure). Paste one at a time:
+
+Total Sales = SUM ( superstore_clean[Sales] )
+
+Total Profit = SUM ( superstore_clean[Profit] )
+
+Profit Margin % = DIVIDE ( [Total Profit], [Total Sales] )
+
+Order Lines = COUNTROWS ( superstore_clean )
+
+Loss-Making Lines = CALCULATE ( COUNTROWS ( superstore_clean ), superstore_clean[Is Loss] = 1 )
+
+Loss Share % = DIVIDE ( [Loss-Making Lines], [Order Lines] )
+
+   Format: Profit Margin % and Loss Share % -> Percentage, 1 decimal.
+
+3) Sort the discount bands in a logical order.
+   New column (Modeling > New column):
+
+Band Order =
+SWITCH (
+    superstore_clean[Discount Band],
+    "No discount", 1,
+    "Up to 20%", 2,
+    "20-30%", 3,
+    "30-50%", 4,
+    "50-80%", 5
+)
+
+   Select the "Discount Band" column > Column tools > Sort by column > Band Order.
+
+DASHBOARD LAYOUT (one page, title: "Where Does the Profit Go?")
+=========================================================
+Top row (4 Card visuals):  Total Sales | Total Profit | Profit Margin % | Loss Share %
+Left:    Clustered bar  - Axis: Sub-Category, Values: Total Profit (sort ascending so losses show first)
+Middle:  Column chart   - Axis: Discount Band, Values: Total Profit
+Right:   Bar chart      - Axis: State, Values: Total Profit, Filters pane: Top N = Bottom 10 by Total Profit
+Bottom:  Clustered column - Axis: Category, Values: Profit Margin %
+Slicers (left side or top): Region, Category, Segment
+Tips: one color for profit, a second color for losses (Format > Visual > Bars > Conditional formatting by value);
+      add a short text box at the bottom with the 3 findings.
