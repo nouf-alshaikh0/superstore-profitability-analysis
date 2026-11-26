@@ -1,6 +1,6 @@
 # Retail Profitability Analysis (Superstore)
 
-Where does a retail business lose its profit? An analysis of 9,977 order lines using **SQL and Power BI**.
+Where does a retail business lose its profit? An analysis of 9,977 order lines using **SQL, Power BI and Excel PivotTables**.
 
 > **Data note:** This uses the *Sample Superstore* dataset, a publicly distributed **US retail sample dataset**
 > (source: Kaggle, Sample Superstore dataset, file SampleSuperstore.csv). It is not Saudi or real company data. I used it to practice an end-to-end analysis workflow.
@@ -39,9 +39,11 @@ Where does a retail business lose its profit? An analysis of 9,977 order lines u
 ## Tools
 - **SQL:** 6 queries in `superstore_queries.sql` (run on a MySQL-compatible database, MariaDB via XAMPP).
 - **Power BI:** interactive dashboard with filters by region, category and segment. DAX measures are in `dax_measures.txt`.
+- **Excel PivotTables:** `superstore_pivottable.xlsx` has two PivotTables built on the cleaned data. One summarizes sales and profit by category and sub-category, and one shows profit and loss-making lines by discount band. They reproduce the same totals as the SQL and Power BI results (sales $2.30M, profit $286K).
 
 ## Files
 - `superstore_clean.csv` – cleaned data
 - `superstore_queries.sql` – SQL queries
 - `dax_measures.txt` – Power BI measures
 - `superstore_dashboard.pbix` / `dashboard.png` – Power BI file and screenshot
+- `superstore_pivottable.xlsx` – Excel PivotTables (category and discount band)
